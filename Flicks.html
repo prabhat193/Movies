@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MOVIES</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+</head>
+
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // In this part, you need to prepare your data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+
+
+                    { name: 'FId', type: 'number' },
+                    { name: 'FName', type: 'string' },
+                    { name: 'Starcast', type: 'string' },
+                    { name: 'Producer', type: 'string' },
+                    { name: 'ReleaseDate', type: 'datetime' },
+
+                ],
+                url: 'https://localhost:44345/odata/Flicks'
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // displaying data in the grid with jqxGrid
+            $("#gridEmps").jqxGrid(
+                {
+                    width: 1000,
+                    source: dataAdapter,
+                    pageable: true,
+                    sortable: true,
+                    columns: [
+
+
+                        { text: "Movie Id", datafield: "FId", cellsalign: 'center' },
+                        { text: "Movie Name", datafield: "FName", cellsalign: 'center' },
+                        { text: "Starcast", datafield: "Starcast", cellsalign: 'center' },
+                        { text: "Producer", datafield: "Producer", cellsalign: 'center' },
+                        { text: "Release Date", datafield: "ReleaseDate", cellsalign: 'center' },
+
+                    ]
+                }
+            );
+        }
+        );
+    </script>
+
+    <div class="container col-sm-3 p-3">
+        <div class="jumbotron bg-primary text-center text-white p3">
+            <h1>Using API in HTML</h1>
+        </div>
+        <div id="gridEmps" class="container bg-success"></div>
+    </div>
+
+</body>
+</html>
